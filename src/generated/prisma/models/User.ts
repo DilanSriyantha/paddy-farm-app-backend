@@ -312,7 +312,7 @@ export type UserScalarWhereWithAggregatesInput = {
 
 export type UserCreateInput = {
   email: string
-  phoneNumber?: string
+  phoneNumber: string
   name: string
   password: string
   preferredLanguage?: $Enums.LanguageOption
@@ -324,7 +324,7 @@ export type UserCreateInput = {
 export type UserUncheckedCreateInput = {
   id?: number
   email: string
-  phoneNumber?: string
+  phoneNumber: string
   name: string
   password: string
   preferredLanguage?: $Enums.LanguageOption
@@ -359,7 +359,7 @@ export type UserUncheckedUpdateInput = {
 export type UserCreateManyInput = {
   id?: number
   email: string
-  phoneNumber?: string
+  phoneNumber: string
   name: string
   password: string
   preferredLanguage?: $Enums.LanguageOption
