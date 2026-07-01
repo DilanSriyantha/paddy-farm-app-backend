@@ -49,3 +49,8 @@ export type User = Prisma.UserModel
  * 
  */
 export type Cultivation = Prisma.CultivationModel
+/**
+ * Model Fertilizer
+ * 
+ */
+export type Fertilizer = Prisma.FertilizerModel

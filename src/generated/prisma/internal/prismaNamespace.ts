@@ -385,7 +385,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 export const ModelName = {
   User: 'User',
-  Cultivation: 'Cultivation'
+  Cultivation: 'Cultivation',
+  Fertilizer: 'Fertilizer'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -401,7 +402,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "cultivation"
+    modelProps: "user" | "cultivation" | "fertilizer"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -537,6 +538,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Fertilizer: {
+      payload: Prisma.$FertilizerPayload<ExtArgs>
+      fields: Prisma.FertilizerFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.FertilizerFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FertilizerPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.FertilizerFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FertilizerPayload>
+        }
+        findFirst: {
+          args: Prisma.FertilizerFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FertilizerPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.FertilizerFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FertilizerPayload>
+        }
+        findMany: {
+          args: Prisma.FertilizerFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FertilizerPayload>[]
+        }
+        create: {
+          args: Prisma.FertilizerCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FertilizerPayload>
+        }
+        createMany: {
+          args: Prisma.FertilizerCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.FertilizerDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FertilizerPayload>
+        }
+        update: {
+          args: Prisma.FertilizerUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FertilizerPayload>
+        }
+        deleteMany: {
+          args: Prisma.FertilizerDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.FertilizerUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.FertilizerUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$FertilizerPayload>
+        }
+        aggregate: {
+          args: Prisma.FertilizerAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateFertilizer>
+        }
+        groupBy: {
+          args: Prisma.FertilizerGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FertilizerGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.FertilizerCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.FertilizerCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -606,6 +673,17 @@ export const CultivationScalarFieldEnum = {
 export type CultivationScalarFieldEnum = (typeof CultivationScalarFieldEnum)[keyof typeof CultivationScalarFieldEnum]
 
 
+export const FertilizerScalarFieldEnum = {
+  id: 'id',
+  imgPath: 'imgPath',
+  name: 'name',
+  pricePerKg: 'pricePerKg',
+  status: 'status'
+} as const
+
+export type FertilizerScalarFieldEnum = (typeof FertilizerScalarFieldEnum)[keyof typeof FertilizerScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -630,6 +708,22 @@ export const CultivationOrderByRelevanceFieldEnum = {
 } as const
 
 export type CultivationOrderByRelevanceFieldEnum = (typeof CultivationOrderByRelevanceFieldEnum)[keyof typeof CultivationOrderByRelevanceFieldEnum]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const FertilizerOrderByRelevanceFieldEnum = {
+  imgPath: 'imgPath',
+  name: 'name'
+} as const
+
+export type FertilizerOrderByRelevanceFieldEnum = (typeof FertilizerOrderByRelevanceFieldEnum)[keyof typeof FertilizerOrderByRelevanceFieldEnum]
 
 
 
@@ -684,6 +778,13 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'CultivationStatus'
  */
 export type EnumCultivationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CultivationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'FertilizerStatus'
+ */
+export type EnumFertilizerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'FertilizerStatus'>
     
 
 /**
@@ -798,6 +899,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   cultivation?: Prisma.CultivationOmit
+  fertilizer?: Prisma.FertilizerOmit
 }
 
 /* Types for Logging */

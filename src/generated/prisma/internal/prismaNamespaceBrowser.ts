@@ -52,7 +52,8 @@ export const AnyNull = runtime.AnyNull
 
 export const ModelName = {
   User: 'User',
-  Cultivation: 'Cultivation'
+  Cultivation: 'Cultivation',
+  Fertilizer: 'Fertilizer'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -101,6 +102,17 @@ export const CultivationScalarFieldEnum = {
 export type CultivationScalarFieldEnum = (typeof CultivationScalarFieldEnum)[keyof typeof CultivationScalarFieldEnum]
 
 
+export const FertilizerScalarFieldEnum = {
+  id: 'id',
+  imgPath: 'imgPath',
+  name: 'name',
+  pricePerKg: 'pricePerKg',
+  status: 'status'
+} as const
+
+export type FertilizerScalarFieldEnum = (typeof FertilizerScalarFieldEnum)[keyof typeof FertilizerScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -125,4 +137,20 @@ export const CultivationOrderByRelevanceFieldEnum = {
 } as const
 
 export type CultivationOrderByRelevanceFieldEnum = (typeof CultivationOrderByRelevanceFieldEnum)[keyof typeof CultivationOrderByRelevanceFieldEnum]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const FertilizerOrderByRelevanceFieldEnum = {
+  imgPath: 'imgPath',
+  name: 'name'
+} as const
+
+export type FertilizerOrderByRelevanceFieldEnum = (typeof FertilizerOrderByRelevanceFieldEnum)[keyof typeof FertilizerOrderByRelevanceFieldEnum]
 

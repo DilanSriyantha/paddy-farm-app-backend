@@ -31,3 +31,11 @@ export const CultivationStatus = {
 } as const
 
 export type CultivationStatus = (typeof CultivationStatus)[keyof typeof CultivationStatus]
+
+
+export const FertilizerStatus = {
+  ACTIVE: 'ACTIVE',
+  INACTIVE: 'INACTIVE'
+} as const
+
+export type FertilizerStatus = (typeof FertilizerStatus)[keyof typeof FertilizerStatus]

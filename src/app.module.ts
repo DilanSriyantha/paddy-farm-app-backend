@@ -7,6 +7,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { CultivationsModule } from './cultivations/cultivations.module';
 import { RecommendationsModule } from './recommendations/recommendations.module';
+import { FertilizersModule } from './fertilizers/fertilizers.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { RecommendationsModule } from './recommendations/recommendations.module'
     UsersModule,
     AuthModule,
     CultivationsModule,
-    RecommendationsModule
+    RecommendationsModule,
+    FertilizersModule
   ],
   controllers: [AppController],
   providers: [AppService],

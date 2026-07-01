@@ -60,3 +60,18 @@ enum CultivationStatus {
   ACTIVE
   COMPLETED
 }
+
+model Fertilizer {
+  id         Int              @id @default(autoincrement())
+  imgPath    String?
+  name       String
+  pricePerKg Float            @default(0.0)
+  status     FertilizerStatus @default(ACTIVE)
+
+  @@map("fertilizers")
+}
+
+enum FertilizerStatus {
+  ACTIVE
+  INACTIVE
+}

@@ -10,4 +10,5 @@
  */
 export type * from './models/User.js'
 export type * from './models/Cultivation.js'
+export type * from './models/Fertilizer.js'
 export type * from './commonInputTypes.js'
