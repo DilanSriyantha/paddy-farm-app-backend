@@ -24,6 +24,8 @@ model User {
   createdAt         DateTime       @default(now()) @map("created_at")
   updatedAt         DateTime       @updatedAt @map("updated_at")
 
+  cultivations Cultivation[]
+
   @@map("users")
 }
 
@@ -35,4 +37,26 @@ enum LanguageOption {
 enum Role {
   USER
   ADMIN
+}
+
+model Cultivation {
+  id           Int               @id @default(autoincrement())
+  startDate    DateTime
+  seedType     String
+  sizeInAcres  Float
+  paddyVariety String
+  status       CultivationStatus @default(ACTIVE)
+  createdAt    DateTime          @default(now()) @map("created_at")
+  updatedAt    DateTime          @updatedAt @map("updated_at")
+
+  userId Int @map("user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("cultivations")
+}
+
+enum CultivationStatus {
+  ACTIVE
+  COMPLETED
 }

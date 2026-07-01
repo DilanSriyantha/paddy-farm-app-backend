@@ -1,7 +1,7 @@
 import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { Prisma } from 'src/generated/prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
+import { UserCreateInput, UserModel, UserUpdateInput } from 'src/generated/prisma/models';
 
 @Injectable()
 export class UsersService {
@@ -9,11 +9,11 @@ export class UsersService {
         private prisma: PrismaService
     ) { }
 
-    async findAll() {
+    async findAll(): Promise<UserModel[]> {
         return this.prisma.user.findMany();
     }
 
-    async findOneById(id: number) {
+    async findOneById(id: number): Promise<UserModel | null> {
         const user = this.prisma.user.findUnique({
             where: { id }
         });
@@ -23,7 +23,7 @@ export class UsersService {
         return user;
     }
 
-    async findOneByEmail(email: string) {
+    async findOneByEmail(email: string): Promise<UserModel | null> {
         const user = this.prisma.user.findUnique({
             where: { email }
         });
@@ -33,7 +33,7 @@ export class UsersService {
         return user;
     }
 
-    async createOne(data: Prisma.UserCreateInput) {
+    async createOne(data: UserCreateInput): Promise<UserModel> {
         const existingUser = await this.findOneByEmail(data.email);
         if (existingUser) throw new ConflictException("Email already registered!");
 
@@ -48,7 +48,7 @@ export class UsersService {
         });
     }
 
-    async updateOne(id: number, data: Prisma.UserUpdateInput) {
+    async updateOne(id: number, data: UserUpdateInput): Promise<UserModel> {
         await this.findOneById(id);
 
         return this.prisma.user.update({
@@ -57,7 +57,7 @@ export class UsersService {
         });
     }
 
-    async deleteOne(id: number) {
+    async deleteOne(id: number): Promise<UserModel> {
         await this.findOneById(id);
 
         return this.prisma.user.delete({

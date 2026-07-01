@@ -23,3 +23,11 @@ export const Role = {
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const CultivationStatus = {
+  ACTIVE: 'ACTIVE',
+  COMPLETED: 'COMPLETED'
+} as const
+
+export type CultivationStatus = (typeof CultivationStatus)[keyof typeof CultivationStatus]

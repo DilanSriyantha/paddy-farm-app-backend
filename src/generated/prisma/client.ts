@@ -44,3 +44,8 @@ export { Prisma }
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Cultivation
+ * 
+ */
+export type Cultivation = Prisma.CultivationModel

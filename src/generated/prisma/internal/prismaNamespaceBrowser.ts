@@ -51,7 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  Cultivation: 'Cultivation'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -85,6 +86,21 @@ export const UserScalarFieldEnum = {
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+export const CultivationScalarFieldEnum = {
+  id: 'id',
+  startDate: 'startDate',
+  seedType: 'seedType',
+  sizeInAcres: 'sizeInAcres',
+  paddyVariety: 'paddyVariety',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type CultivationScalarFieldEnum = (typeof CultivationScalarFieldEnum)[keyof typeof CultivationScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -101,4 +117,12 @@ export const UserOrderByRelevanceFieldEnum = {
 } as const
 
 export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+export const CultivationOrderByRelevanceFieldEnum = {
+  seedType: 'seedType',
+  paddyVariety: 'paddyVariety'
+} as const
+
+export type CultivationOrderByRelevanceFieldEnum = (typeof CultivationOrderByRelevanceFieldEnum)[keyof typeof CultivationOrderByRelevanceFieldEnum]
 
