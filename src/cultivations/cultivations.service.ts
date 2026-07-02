@@ -1,13 +1,19 @@
-import { Injectable, NotAcceptableException, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotAcceptableException, NotFoundException } from '@nestjs/common';
+import { Cron, CronExpression } from '@nestjs/schedule';
+import { Notification, TextContents } from 'src/constants/constants';
 import { CultivationCreateInput, CultivationModel, CultivationUpdateInput } from 'src/generated/prisma/models';
+import { NotificationsService } from 'src/notifications/notifications.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class CultivationsService {
+    private readonly logger = new Logger(CultivationsService.name);
+
     constructor(
-        private prisma: PrismaService,
-        private usersService: UsersService
+        private readonly prisma: PrismaService,
+        private readonly usersService: UsersService,
+        private readonly notificationsService: NotificationsService,
     ) { }
 
     async findAll(): Promise<CultivationModel[]> {
@@ -15,7 +21,7 @@ export class CultivationsService {
     }
 
     async findOneById(id: number): Promise<CultivationModel | null> {
-        const cultivation = this.prisma.cultivation.findFirst({
+        const cultivation = await this.prisma.cultivation.findFirst({
             where: { id }
         });
 
@@ -45,7 +51,7 @@ export class CultivationsService {
 
         const parsedDate = new Date(body.startDate);
 
-        const cultivation = this.prisma.cultivation.create({
+        const cultivation = await this.prisma.cultivation.create({
             data: {
                 startDate: parsedDate,
                 seedType: body.seedType,
@@ -53,6 +59,14 @@ export class CultivationsService {
                 paddyVariety: body.paddyVariety,
                 userId: user.id
             }
+        });
+
+        const language = user.preferredLanguage === "ENGLISH" ? "en" : "si";
+        const notification = TextContents[language].notifications.stages.germination;
+        await this.notificationsService.createOne({
+            title: notification.title,
+            content: notification.message,
+            userId: user.id,
         });
 
         return cultivation;
@@ -82,5 +96,66 @@ export class CultivationsService {
         return this.prisma.cultivation.delete({
             where: { id }
         });
+    }
+
+    @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+    async handleCultivationStageUpdates() {
+        this.logger.log("Running daily cultivation stage checks...");
+
+        const stageKeys: Record<number, string> = {
+            15: 'seedling_early_vegetative',
+            31: 'tillering',
+            51: 'panicle_initiation',
+            66: 'booting_heading',
+            81: 'flowering',
+            96: 'grain_filling_ripening',
+            111: 'harvest'
+        };
+
+        try {
+            const activeCultivations = await this.prisma.cultivation.findMany({
+                where: { status: "ACTIVE" },
+                include: { user: true }
+            });
+
+            for (const cultivation of activeCultivations) {
+                const daysGone = this.getDaysGone(cultivation);
+                const stageKey = stageKeys[daysGone];
+
+                if (!stageKey) continue;
+
+                const language = cultivation.user.preferredLanguage === "ENGLISH" ? "en" : "si"
+                let notification: Notification = TextContents[language].notifications.stages[stageKey];
+
+                if (!notification) continue;
+
+                await this.prisma.$transaction([
+                    this.prisma.notification.create({
+                        data: {
+                            title: notification.title,
+                            content: notification.message,
+                            userId: cultivation.userId,
+                        }
+                    }),
+                ]);
+
+                this.logger.log(`Triggered notification for User ${cultivation.userId} on cultivation ID ${cultivation.id}`);
+            }
+        } catch (err) {
+            this.logger.error("Error processing cultivation stages", err instanceof Error ? err.stack : "An unknown error.");
+        }
+    }
+
+    private getDaysGone(cultivation: CultivationModel): number {
+        const startDate = new Date(cultivation.startDate);
+        const today = new Date();
+
+        startDate.setHours(0, 0, 0, 0);
+        today.setHours(0, 0, 0, 0);
+
+        const diffInMillis = today.getTime() - startDate.getTime();
+        const daysGone = diffInMillis / (1000 * 60 * 60 * 24);
+
+        return Math.floor(daysGone);
     }
 }

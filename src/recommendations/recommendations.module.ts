@@ -6,6 +6,6 @@ import { CultivationsModule } from 'src/cultivations/cultivations.module';
 @Module({
   providers: [RecommendationsService],
   controllers: [RecommendationsController],
-  imports: [CultivationsModule]
+  imports: [CultivationsModule],
 })
 export class RecommendationsModule { }

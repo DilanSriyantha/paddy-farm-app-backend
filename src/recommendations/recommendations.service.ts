@@ -6,7 +6,7 @@ import { Notification, Recommendation, RecommendationSummary, Stage, TextContent
 @Injectable()
 export class RecommendationsService {
     constructor(
-        private cultivationsService: CultivationsService
+        private readonly cultivationsService: CultivationsService
     ) { }
 
     async getRecommendations(language: "en" | "si"): Promise<RecommendationSummary | null> {
@@ -51,7 +51,10 @@ export class RecommendationsService {
         const startDate = new Date(cultivation.startDate);
         const currentDate = new Date(Date.now());
 
-        const diffInMillis = Math.abs(currentDate.getTime() - startDate.getTime());
+        startDate.setHours(0, 0, 0, 0);
+        currentDate.setHours(0, 0, 0, 0);
+
+        const diffInMillis = currentDate.getTime() - startDate.getTime();
         const diffInDays = diffInMillis / (1000 * 60 * 60 * 24);
 
         return Math.floor(diffInDays);

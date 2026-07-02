@@ -24,7 +24,8 @@ model User {
   createdAt         DateTime       @default(now()) @map("created_at")
   updatedAt         DateTime       @updatedAt @map("updated_at")
 
-  cultivations Cultivation[]
+  cultivations  Cultivation[]
+  notifications Notification[]
 
   @@map("users")
 }
@@ -67,6 +68,8 @@ model Fertilizer {
   name       String
   pricePerKg Float            @default(0.0)
   status     FertilizerStatus @default(ACTIVE)
+  createdAt  DateTime         @default(now()) @map("created_at")
+  updatedAt  DateTime         @updatedAt @map("updated_at")
 
   @@map("fertilizers")
 }
@@ -74,4 +77,24 @@ model Fertilizer {
 enum FertilizerStatus {
   ACTIVE
   INACTIVE
+}
+
+model Notification {
+  id        Int                @id @default(autoincrement())
+  title     String
+  content   String
+  status    NotificationStatus @default(NOT_READ)
+  createdAt DateTime           @default(now()) @map("created_at")
+  updatedAt DateTime           @updatedAt @map("updated_at")
+
+  userId Int @map("user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+enum NotificationStatus {
+  READ
+  NOT_READ
 }

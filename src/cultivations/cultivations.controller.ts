@@ -14,25 +14,34 @@ export class CultivationsController {
     }
 
     @Get("/findOneById")
-    findOneById(@Query("id", ParseIntPipe) id: number): Promise<CultivationModel | null> {
+    findOneById(
+        @Query("id", ParseIntPipe) id: number
+    ): Promise<CultivationModel | null> {
         return this.cultivationService.findOneById(id);
     }
 
     @Post("/create")
-    createOne(@Req() request: Request, @Body() body: CultivationCreateInput): Promise<CultivationModel> {
+    createOne(
+        @Req() request: Request,
+        @Body() body: CultivationCreateInput
+    ): Promise<CultivationModel> {
         const user = request["user"];
         if (!user) throw new UnauthorizedException();
-
         return this.cultivationService.createOne(user["email"], body);
     }
 
     @Put("/update")
-    updateOne(@Query("id", ParseIntPipe) id: number, @Body() body: CultivationUpdateInput): Promise<CultivationModel | null> {
+    updateOne(
+        @Query("id", ParseIntPipe) id: number,
+        @Body() body: CultivationUpdateInput
+    ): Promise<CultivationModel | null> {
         return this.cultivationService.updateOne(id, body);
     }
 
     @Delete("/delete")
-    deleteOne(@Query("id", ParseIntPipe) id: number): Promise<CultivationModel> {
+    deleteOne(
+        @Query("id", ParseIntPipe) id: number
+    ): Promise<CultivationModel> {
         return this.cultivationService.deleteOne(id);
     }
 }

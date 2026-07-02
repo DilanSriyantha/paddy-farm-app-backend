@@ -39,3 +39,11 @@ export const FertilizerStatus = {
 } as const
 
 export type FertilizerStatus = (typeof FertilizerStatus)[keyof typeof FertilizerStatus]
+
+
+export const NotificationStatus = {
+  READ: 'READ',
+  NOT_READ: 'NOT_READ'
+} as const
+
+export type NotificationStatus = (typeof NotificationStatus)[keyof typeof NotificationStatus]

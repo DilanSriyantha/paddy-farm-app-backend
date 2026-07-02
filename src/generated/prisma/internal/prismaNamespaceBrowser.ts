@@ -53,7 +53,8 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Cultivation: 'Cultivation',
-  Fertilizer: 'Fertilizer'
+  Fertilizer: 'Fertilizer',
+  Notification: 'Notification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -107,10 +108,25 @@ export const FertilizerScalarFieldEnum = {
   imgPath: 'imgPath',
   name: 'name',
   pricePerKg: 'pricePerKg',
-  status: 'status'
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type FertilizerScalarFieldEnum = (typeof FertilizerScalarFieldEnum)[keyof typeof FertilizerScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  content: 'content',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -153,4 +169,12 @@ export const FertilizerOrderByRelevanceFieldEnum = {
 } as const
 
 export type FertilizerOrderByRelevanceFieldEnum = (typeof FertilizerOrderByRelevanceFieldEnum)[keyof typeof FertilizerOrderByRelevanceFieldEnum]
+
+
+export const NotificationOrderByRelevanceFieldEnum = {
+  title: 'title',
+  content: 'content'
+} as const
+
+export type NotificationOrderByRelevanceFieldEnum = (typeof NotificationOrderByRelevanceFieldEnum)[keyof typeof NotificationOrderByRelevanceFieldEnum]
 

@@ -8,8 +8,8 @@ import { User } from 'src/generated/prisma/client';
 @Injectable()
 export class AuthService {
     constructor(
-        private usersService: UsersService,
-        private jwtService: JwtService,
+        private readonly usersService: UsersService,
+        private readonly jwtService: JwtService,
     ) { }
 
     async validateUser(loginRequest: LoginRequest): Promise<any> {

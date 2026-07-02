@@ -11,7 +11,9 @@ export class AuthController {
 
     @Public()
     @Post('/login')
-    async login(@Body() loginRequest: LoginRequest) {
+    async login(
+        @Body() loginRequest: LoginRequest
+    ): Promise<{ access_token: string }> {
         const user = await this.authService.validateUser(loginRequest);
         if (!user) throw new UnauthorizedException();
 
@@ -20,7 +22,9 @@ export class AuthController {
 
     @Public()
     @Post('/register')
-    async register(@Body() registerRequest: RegisterRequest) {
+    async register(
+        @Body() registerRequest: RegisterRequest
+    ): Promise<{ access_token: string }> {
         const user = await this.authService.registerUser(registerRequest);
         if (!user) throw new UnauthorizedException();
 

@@ -54,3 +54,8 @@ export type Cultivation = Prisma.CultivationModel
  * 
  */
 export type Fertilizer = Prisma.FertilizerModel
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel

@@ -42,6 +42,8 @@ export type FertilizerMinAggregateOutputType = {
   name: string | null
   pricePerKg: number | null
   status: $Enums.FertilizerStatus | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type FertilizerMaxAggregateOutputType = {
@@ -50,6 +52,8 @@ export type FertilizerMaxAggregateOutputType = {
   name: string | null
   pricePerKg: number | null
   status: $Enums.FertilizerStatus | null
+  createdAt: Date | null
+  updatedAt: Date | null
 }
 
 export type FertilizerCountAggregateOutputType = {
@@ -58,6 +62,8 @@ export type FertilizerCountAggregateOutputType = {
   name: number
   pricePerKg: number
   status: number
+  createdAt: number
+  updatedAt: number
   _all: number
 }
 
@@ -78,6 +84,8 @@ export type FertilizerMinAggregateInputType = {
   name?: true
   pricePerKg?: true
   status?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type FertilizerMaxAggregateInputType = {
@@ -86,6 +94,8 @@ export type FertilizerMaxAggregateInputType = {
   name?: true
   pricePerKg?: true
   status?: true
+  createdAt?: true
+  updatedAt?: true
 }
 
 export type FertilizerCountAggregateInputType = {
@@ -94,6 +104,8 @@ export type FertilizerCountAggregateInputType = {
   name?: true
   pricePerKg?: true
   status?: true
+  createdAt?: true
+  updatedAt?: true
   _all?: true
 }
 
@@ -189,6 +201,8 @@ export type FertilizerGroupByOutputType = {
   name: string
   pricePerKg: number
   status: $Enums.FertilizerStatus
+  createdAt: Date
+  updatedAt: Date
   _count: FertilizerCountAggregateOutputType | null
   _avg: FertilizerAvgAggregateOutputType | null
   _sum: FertilizerSumAggregateOutputType | null
@@ -220,6 +234,8 @@ export type FertilizerWhereInput = {
   name?: Prisma.StringFilter<"Fertilizer"> | string
   pricePerKg?: Prisma.FloatFilter<"Fertilizer"> | number
   status?: Prisma.EnumFertilizerStatusFilter<"Fertilizer"> | $Enums.FertilizerStatus
+  createdAt?: Prisma.DateTimeFilter<"Fertilizer"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Fertilizer"> | Date | string
 }
 
 export type FertilizerOrderByWithRelationInput = {
@@ -228,6 +244,8 @@ export type FertilizerOrderByWithRelationInput = {
   name?: Prisma.SortOrder
   pricePerKg?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _relevance?: Prisma.FertilizerOrderByRelevanceInput
 }
 
@@ -240,6 +258,8 @@ export type FertilizerWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"Fertilizer"> | string
   pricePerKg?: Prisma.FloatFilter<"Fertilizer"> | number
   status?: Prisma.EnumFertilizerStatusFilter<"Fertilizer"> | $Enums.FertilizerStatus
+  createdAt?: Prisma.DateTimeFilter<"Fertilizer"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Fertilizer"> | Date | string
 }, "id">
 
 export type FertilizerOrderByWithAggregationInput = {
@@ -248,6 +268,8 @@ export type FertilizerOrderByWithAggregationInput = {
   name?: Prisma.SortOrder
   pricePerKg?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
   _count?: Prisma.FertilizerCountOrderByAggregateInput
   _avg?: Prisma.FertilizerAvgOrderByAggregateInput
   _max?: Prisma.FertilizerMaxOrderByAggregateInput
@@ -264,6 +286,8 @@ export type FertilizerScalarWhereWithAggregatesInput = {
   name?: Prisma.StringWithAggregatesFilter<"Fertilizer"> | string
   pricePerKg?: Prisma.FloatWithAggregatesFilter<"Fertilizer"> | number
   status?: Prisma.EnumFertilizerStatusWithAggregatesFilter<"Fertilizer"> | $Enums.FertilizerStatus
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Fertilizer"> | Date | string
+  updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Fertilizer"> | Date | string
 }
 
 export type FertilizerCreateInput = {
@@ -271,6 +295,8 @@ export type FertilizerCreateInput = {
   name: string
   pricePerKg?: number
   status?: $Enums.FertilizerStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type FertilizerUncheckedCreateInput = {
@@ -279,6 +305,8 @@ export type FertilizerUncheckedCreateInput = {
   name: string
   pricePerKg?: number
   status?: $Enums.FertilizerStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type FertilizerUpdateInput = {
@@ -286,6 +314,8 @@ export type FertilizerUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   pricePerKg?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumFertilizerStatusFieldUpdateOperationsInput | $Enums.FertilizerStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type FertilizerUncheckedUpdateInput = {
@@ -294,6 +324,8 @@ export type FertilizerUncheckedUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   pricePerKg?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumFertilizerStatusFieldUpdateOperationsInput | $Enums.FertilizerStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type FertilizerCreateManyInput = {
@@ -302,6 +334,8 @@ export type FertilizerCreateManyInput = {
   name: string
   pricePerKg?: number
   status?: $Enums.FertilizerStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
 }
 
 export type FertilizerUpdateManyMutationInput = {
@@ -309,6 +343,8 @@ export type FertilizerUpdateManyMutationInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   pricePerKg?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumFertilizerStatusFieldUpdateOperationsInput | $Enums.FertilizerStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type FertilizerUncheckedUpdateManyInput = {
@@ -317,6 +353,8 @@ export type FertilizerUncheckedUpdateManyInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   pricePerKg?: Prisma.FloatFieldUpdateOperationsInput | number
   status?: Prisma.EnumFertilizerStatusFieldUpdateOperationsInput | $Enums.FertilizerStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type FertilizerOrderByRelevanceInput = {
@@ -331,6 +369,8 @@ export type FertilizerCountOrderByAggregateInput = {
   name?: Prisma.SortOrder
   pricePerKg?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type FertilizerAvgOrderByAggregateInput = {
@@ -344,6 +384,8 @@ export type FertilizerMaxOrderByAggregateInput = {
   name?: Prisma.SortOrder
   pricePerKg?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type FertilizerMinOrderByAggregateInput = {
@@ -352,6 +394,8 @@ export type FertilizerMinOrderByAggregateInput = {
   name?: Prisma.SortOrder
   pricePerKg?: Prisma.SortOrder
   status?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  updatedAt?: Prisma.SortOrder
 }
 
 export type FertilizerSumOrderByAggregateInput = {
@@ -375,6 +419,8 @@ export type FertilizerSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   name?: boolean
   pricePerKg?: boolean
   status?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }, ExtArgs["result"]["fertilizer"]>
 
 
@@ -385,9 +431,11 @@ export type FertilizerSelectScalar = {
   name?: boolean
   pricePerKg?: boolean
   status?: boolean
+  createdAt?: boolean
+  updatedAt?: boolean
 }
 
-export type FertilizerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "imgPath" | "name" | "pricePerKg" | "status", ExtArgs["result"]["fertilizer"]>
+export type FertilizerOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "imgPath" | "name" | "pricePerKg" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["fertilizer"]>
 
 export type $FertilizerPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Fertilizer"
@@ -398,6 +446,8 @@ export type $FertilizerPayload<ExtArgs extends runtime.Types.Extensions.Internal
     name: string
     pricePerKg: number
     status: $Enums.FertilizerStatus
+    createdAt: Date
+    updatedAt: Date
   }, ExtArgs["result"]["fertilizer"]>
   composites: {}
 }
@@ -772,6 +822,8 @@ export interface FertilizerFieldRefs {
   readonly name: Prisma.FieldRef<"Fertilizer", 'String'>
   readonly pricePerKg: Prisma.FieldRef<"Fertilizer", 'Float'>
   readonly status: Prisma.FieldRef<"Fertilizer", 'FertilizerStatus'>
+  readonly createdAt: Prisma.FieldRef<"Fertilizer", 'DateTime'>
+  readonly updatedAt: Prisma.FieldRef<"Fertilizer", 'DateTime'>
 }
     
 
