@@ -10,11 +10,14 @@ import { RecommendationsModule } from './recommendations/recommendations.module'
 import { FertilizersModule } from './fertilizers/fertilizers.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { DiseasePredictionModule } from './disease-prediction/disease-prediction.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     ScheduleModule.forRoot(),
+    HttpModule,
     PrismaModule,
     UsersModule,
     AuthModule,
@@ -22,6 +25,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     RecommendationsModule,
     FertilizersModule,
     NotificationsModule,
+    DiseasePredictionModule,
   ],
   controllers: [AppController],
   providers: [AppService],
