@@ -1,6 +1,7 @@
 import { Injectable, Logger, NotAcceptableException, NotFoundException } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { Notification, TextContents } from 'src/constants/constants';
+import { PrismaPromise } from 'src/generated/prisma/internal/prismaNamespace';
 import { CultivationCreateInput, CultivationModel, CultivationUpdateInput } from 'src/generated/prisma/models';
 import { NotificationsService } from 'src/notifications/notifications.service';
 import { PrismaService } from 'src/prisma/prisma.service';
@@ -113,7 +114,8 @@ export class CultivationsService {
             66: 'booting_heading',
             81: 'flowering',
             96: 'grain_filling_ripening',
-            111: 'harvest'
+            111: 'harvest',
+            121: 'completed'
         };
 
         try {
@@ -133,15 +135,26 @@ export class CultivationsService {
 
                 if (!notification) continue;
 
-                await this.prisma.$transaction([
-                    this.prisma.notification.create({
-                        data: {
-                            title: notification.title,
-                            content: notification.message,
-                            userId: cultivation.userId,
-                        }
-                    }),
-                ]);
+                const queries: PrismaPromise<any>[] = [];
+
+                if (stageKey === stageKeys[121]) {
+                    const completeCurrentSession = this.prisma.cultivation.update({
+                        data: { status: "COMPLETED" },
+                        where: { id: cultivation.id }
+                    });
+                    queries.push(completeCurrentSession);
+                }
+
+                const createNotification = this.prisma.notification.create({
+                    data: {
+                        title: notification.title,
+                        content: notification.message,
+                        userId: cultivation.userId,
+                    }
+                });
+                queries.push(createNotification);
+
+                await this.prisma.$transaction(queries);
 
                 this.logger.log(`Triggered notification for User ${cultivation.userId} on cultivation ID ${cultivation.id}`);
             }

@@ -16,7 +16,7 @@ export class UsersService {
     }
 
     async findOneById(id: number): Promise<UserModel> {
-        const user = this.prisma.user.findUniqueOrThrow({
+        const user = await this.prisma.user.findUniqueOrThrow({
             where: { id }
         });
 
@@ -24,7 +24,7 @@ export class UsersService {
     }
 
     async findOneByEmail(email: string): Promise<UserModel> {
-        const user = this.prisma.user.findUniqueOrThrow({
+        const user = await this.prisma.user.findUniqueOrThrow({
             where: { email }
         });
 
@@ -32,7 +32,7 @@ export class UsersService {
     }
 
     async createOne(data: UserCreateInput): Promise<UserModel> {
-        const existingUser = await this.findOneByEmail(data.email);
+        const existingUser = await this.prisma.user.findUnique({ where: { email: data.email } });
         if (existingUser) throw new ConflictException("Email already registered!");
 
         const hashedPassword = await bcrypt.hash(data.password, 10);

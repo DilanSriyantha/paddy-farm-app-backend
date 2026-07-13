@@ -68,8 +68,6 @@ export class ChatbotService {
 
         const context = constructContextInstruction(user.name, cultivation, elapsedDays, stage.title, 120 - elapsedDays, chatHistory, language);
 
-        console.log(context);
-
         return context;
     }
 
