@@ -387,7 +387,9 @@ export const ModelName = {
   User: 'User',
   Cultivation: 'Cultivation',
   Fertilizer: 'Fertilizer',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  DiseaseDetectionResult: 'DiseaseDetectionResult',
+  ChatbotMessage: 'ChatbotMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -403,7 +405,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "cultivation" | "fertilizer" | "notification"
+    modelProps: "user" | "cultivation" | "fertilizer" | "notification" | "diseaseDetectionResult" | "chatbotMessage"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -671,6 +673,138 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    DiseaseDetectionResult: {
+      payload: Prisma.$DiseaseDetectionResultPayload<ExtArgs>
+      fields: Prisma.DiseaseDetectionResultFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DiseaseDetectionResultFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiseaseDetectionResultPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DiseaseDetectionResultFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiseaseDetectionResultPayload>
+        }
+        findFirst: {
+          args: Prisma.DiseaseDetectionResultFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiseaseDetectionResultPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DiseaseDetectionResultFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiseaseDetectionResultPayload>
+        }
+        findMany: {
+          args: Prisma.DiseaseDetectionResultFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiseaseDetectionResultPayload>[]
+        }
+        create: {
+          args: Prisma.DiseaseDetectionResultCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiseaseDetectionResultPayload>
+        }
+        createMany: {
+          args: Prisma.DiseaseDetectionResultCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.DiseaseDetectionResultDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiseaseDetectionResultPayload>
+        }
+        update: {
+          args: Prisma.DiseaseDetectionResultUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiseaseDetectionResultPayload>
+        }
+        deleteMany: {
+          args: Prisma.DiseaseDetectionResultDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DiseaseDetectionResultUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.DiseaseDetectionResultUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DiseaseDetectionResultPayload>
+        }
+        aggregate: {
+          args: Prisma.DiseaseDetectionResultAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDiseaseDetectionResult>
+        }
+        groupBy: {
+          args: Prisma.DiseaseDetectionResultGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DiseaseDetectionResultGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DiseaseDetectionResultCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DiseaseDetectionResultCountAggregateOutputType> | number
+        }
+      }
+    }
+    ChatbotMessage: {
+      payload: Prisma.$ChatbotMessagePayload<ExtArgs>
+      fields: Prisma.ChatbotMessageFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.ChatbotMessageFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatbotMessagePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.ChatbotMessageFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatbotMessagePayload>
+        }
+        findFirst: {
+          args: Prisma.ChatbotMessageFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatbotMessagePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.ChatbotMessageFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatbotMessagePayload>
+        }
+        findMany: {
+          args: Prisma.ChatbotMessageFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatbotMessagePayload>[]
+        }
+        create: {
+          args: Prisma.ChatbotMessageCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatbotMessagePayload>
+        }
+        createMany: {
+          args: Prisma.ChatbotMessageCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.ChatbotMessageDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatbotMessagePayload>
+        }
+        update: {
+          args: Prisma.ChatbotMessageUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatbotMessagePayload>
+        }
+        deleteMany: {
+          args: Prisma.ChatbotMessageDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.ChatbotMessageUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.ChatbotMessageUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$ChatbotMessagePayload>
+        }
+        aggregate: {
+          args: Prisma.ChatbotMessageAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateChatbotMessage>
+        }
+        groupBy: {
+          args: Prisma.ChatbotMessageGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChatbotMessageGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.ChatbotMessageCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.ChatbotMessageCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -766,6 +900,33 @@ export const NotificationScalarFieldEnum = {
 export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
+export const DiseaseDetectionResultScalarFieldEnum = {
+  id: 'id',
+  imagePath: 'imagePath',
+  disease: 'disease',
+  diseaseScientificName: 'diseaseScientificName',
+  riskLevel: 'riskLevel',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type DiseaseDetectionResultScalarFieldEnum = (typeof DiseaseDetectionResultScalarFieldEnum)[keyof typeof DiseaseDetectionResultScalarFieldEnum]
+
+
+export const ChatbotMessageScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  deliveredTime: 'deliveredTime',
+  sender: 'sender',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type ChatbotMessageScalarFieldEnum = (typeof ChatbotMessageScalarFieldEnum)[keyof typeof ChatbotMessageScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -814,6 +975,23 @@ export const NotificationOrderByRelevanceFieldEnum = {
 } as const
 
 export type NotificationOrderByRelevanceFieldEnum = (typeof NotificationOrderByRelevanceFieldEnum)[keyof typeof NotificationOrderByRelevanceFieldEnum]
+
+
+export const DiseaseDetectionResultOrderByRelevanceFieldEnum = {
+  id: 'id',
+  imagePath: 'imagePath',
+  disease: 'disease',
+  diseaseScientificName: 'diseaseScientificName'
+} as const
+
+export type DiseaseDetectionResultOrderByRelevanceFieldEnum = (typeof DiseaseDetectionResultOrderByRelevanceFieldEnum)[keyof typeof DiseaseDetectionResultOrderByRelevanceFieldEnum]
+
+
+export const ChatbotMessageOrderByRelevanceFieldEnum = {
+  content: 'content'
+} as const
+
+export type ChatbotMessageOrderByRelevanceFieldEnum = (typeof ChatbotMessageOrderByRelevanceFieldEnum)[keyof typeof ChatbotMessageOrderByRelevanceFieldEnum]
 
 
 
@@ -882,6 +1060,20 @@ export type EnumFertilizerStatusFieldRefInput<$PrismaModel> = FieldRefInputType<
  * Reference to a field of type 'NotificationStatus'
  */
 export type EnumNotificationStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'DiseaseRiskLevel'
+ */
+export type EnumDiseaseRiskLevelFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DiseaseRiskLevel'>
+    
+
+
+/**
+ * Reference to a field of type 'Sender'
+ */
+export type EnumSenderFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Sender'>
     
 
 /**
@@ -998,6 +1190,8 @@ export type GlobalOmitConfig = {
   cultivation?: Prisma.CultivationOmit
   fertilizer?: Prisma.FertilizerOmit
   notification?: Prisma.NotificationOmit
+  diseaseDetectionResult?: Prisma.DiseaseDetectionResultOmit
+  chatbotMessage?: Prisma.ChatbotMessageOmit
 }
 
 /* Types for Logging */

@@ -250,6 +250,8 @@ export type UserWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   cultivations?: Prisma.CultivationListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultListRelationFilter
+  chatbotMessages?: Prisma.ChatbotMessageListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -264,6 +266,8 @@ export type UserOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   cultivations?: Prisma.CultivationOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultOrderByRelationAggregateInput
+  chatbotMessages?: Prisma.ChatbotMessageOrderByRelationAggregateInput
   _relevance?: Prisma.UserOrderByRelevanceInput
 }
 
@@ -282,6 +286,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   cultivations?: Prisma.CultivationListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultListRelationFilter
+  chatbotMessages?: Prisma.ChatbotMessageListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -327,6 +333,8 @@ export type UserCreateInput = {
   updatedAt?: Date | string
   cultivations?: Prisma.CultivationCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultCreateNestedManyWithoutUserInput
+  chatbotMessages?: Prisma.ChatbotMessageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -341,6 +349,8 @@ export type UserUncheckedCreateInput = {
   updatedAt?: Date | string
   cultivations?: Prisma.CultivationUncheckedCreateNestedManyWithoutUserInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUncheckedCreateNestedManyWithoutUserInput
+  chatbotMessages?: Prisma.ChatbotMessageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -354,6 +364,8 @@ export type UserUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cultivations?: Prisma.CultivationUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUpdateManyWithoutUserNestedInput
+  chatbotMessages?: Prisma.ChatbotMessageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -368,6 +380,8 @@ export type UserUncheckedUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cultivations?: Prisma.CultivationUncheckedUpdateManyWithoutUserNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUncheckedUpdateManyWithoutUserNestedInput
+  chatbotMessages?: Prisma.ChatbotMessageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -512,6 +526,34 @@ export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutNotificationsInput, Prisma.UserUpdateWithoutNotificationsInput>, Prisma.UserUncheckedUpdateWithoutNotificationsInput>
 }
 
+export type UserCreateNestedOneWithoutDiseaseDetectionResultsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDiseaseDetectionResultsInput, Prisma.UserUncheckedCreateWithoutDiseaseDetectionResultsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDiseaseDetectionResultsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutDiseaseDetectionResultsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutDiseaseDetectionResultsInput, Prisma.UserUncheckedCreateWithoutDiseaseDetectionResultsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutDiseaseDetectionResultsInput
+  upsert?: Prisma.UserUpsertWithoutDiseaseDetectionResultsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutDiseaseDetectionResultsInput, Prisma.UserUpdateWithoutDiseaseDetectionResultsInput>, Prisma.UserUncheckedUpdateWithoutDiseaseDetectionResultsInput>
+}
+
+export type UserCreateNestedOneWithoutChatbotMessagesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutChatbotMessagesInput, Prisma.UserUncheckedCreateWithoutChatbotMessagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatbotMessagesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutChatbotMessagesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutChatbotMessagesInput, Prisma.UserUncheckedCreateWithoutChatbotMessagesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutChatbotMessagesInput
+  upsert?: Prisma.UserUpsertWithoutChatbotMessagesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutChatbotMessagesInput, Prisma.UserUpdateWithoutChatbotMessagesInput>, Prisma.UserUncheckedUpdateWithoutChatbotMessagesInput>
+}
+
 export type UserCreateWithoutCultivationsInput = {
   email: string
   phoneNumber: string
@@ -522,6 +564,8 @@ export type UserCreateWithoutCultivationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultCreateNestedManyWithoutUserInput
+  chatbotMessages?: Prisma.ChatbotMessageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCultivationsInput = {
@@ -535,6 +579,8 @@ export type UserUncheckedCreateWithoutCultivationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUncheckedCreateNestedManyWithoutUserInput
+  chatbotMessages?: Prisma.ChatbotMessageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCultivationsInput = {
@@ -563,6 +609,8 @@ export type UserUpdateWithoutCultivationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUpdateManyWithoutUserNestedInput
+  chatbotMessages?: Prisma.ChatbotMessageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCultivationsInput = {
@@ -576,6 +624,8 @@ export type UserUncheckedUpdateWithoutCultivationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUncheckedUpdateManyWithoutUserNestedInput
+  chatbotMessages?: Prisma.ChatbotMessageUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutNotificationsInput = {
@@ -588,6 +638,8 @@ export type UserCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cultivations?: Prisma.CultivationCreateNestedManyWithoutUserInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultCreateNestedManyWithoutUserInput
+  chatbotMessages?: Prisma.ChatbotMessageCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -601,6 +653,8 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   cultivations?: Prisma.CultivationUncheckedCreateNestedManyWithoutUserInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUncheckedCreateNestedManyWithoutUserInput
+  chatbotMessages?: Prisma.ChatbotMessageUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -629,6 +683,8 @@ export type UserUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cultivations?: Prisma.CultivationUpdateManyWithoutUserNestedInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUpdateManyWithoutUserNestedInput
+  chatbotMessages?: Prisma.ChatbotMessageUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -642,6 +698,156 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   cultivations?: Prisma.CultivationUncheckedUpdateManyWithoutUserNestedInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUncheckedUpdateManyWithoutUserNestedInput
+  chatbotMessages?: Prisma.ChatbotMessageUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutDiseaseDetectionResultsInput = {
+  email: string
+  phoneNumber: string
+  name: string
+  password: string
+  preferredLanguage?: $Enums.LanguageOption
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cultivations?: Prisma.CultivationCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  chatbotMessages?: Prisma.ChatbotMessageCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutDiseaseDetectionResultsInput = {
+  id?: number
+  email: string
+  phoneNumber: string
+  name: string
+  password: string
+  preferredLanguage?: $Enums.LanguageOption
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cultivations?: Prisma.CultivationUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  chatbotMessages?: Prisma.ChatbotMessageUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutDiseaseDetectionResultsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutDiseaseDetectionResultsInput, Prisma.UserUncheckedCreateWithoutDiseaseDetectionResultsInput>
+}
+
+export type UserUpsertWithoutDiseaseDetectionResultsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutDiseaseDetectionResultsInput, Prisma.UserUncheckedUpdateWithoutDiseaseDetectionResultsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutDiseaseDetectionResultsInput, Prisma.UserUncheckedCreateWithoutDiseaseDetectionResultsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutDiseaseDetectionResultsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutDiseaseDetectionResultsInput, Prisma.UserUncheckedUpdateWithoutDiseaseDetectionResultsInput>
+}
+
+export type UserUpdateWithoutDiseaseDetectionResultsInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredLanguage?: Prisma.EnumLanguageOptionFieldUpdateOperationsInput | $Enums.LanguageOption
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cultivations?: Prisma.CultivationUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  chatbotMessages?: Prisma.ChatbotMessageUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutDiseaseDetectionResultsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredLanguage?: Prisma.EnumLanguageOptionFieldUpdateOperationsInput | $Enums.LanguageOption
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cultivations?: Prisma.CultivationUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  chatbotMessages?: Prisma.ChatbotMessageUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutChatbotMessagesInput = {
+  email: string
+  phoneNumber: string
+  name: string
+  password: string
+  preferredLanguage?: $Enums.LanguageOption
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cultivations?: Prisma.CultivationCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutChatbotMessagesInput = {
+  id?: number
+  email: string
+  phoneNumber: string
+  name: string
+  password: string
+  preferredLanguage?: $Enums.LanguageOption
+  role?: $Enums.Role
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  cultivations?: Prisma.CultivationUncheckedCreateNestedManyWithoutUserInput
+  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutChatbotMessagesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutChatbotMessagesInput, Prisma.UserUncheckedCreateWithoutChatbotMessagesInput>
+}
+
+export type UserUpsertWithoutChatbotMessagesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutChatbotMessagesInput, Prisma.UserUncheckedUpdateWithoutChatbotMessagesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutChatbotMessagesInput, Prisma.UserUncheckedCreateWithoutChatbotMessagesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutChatbotMessagesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutChatbotMessagesInput, Prisma.UserUncheckedUpdateWithoutChatbotMessagesInput>
+}
+
+export type UserUpdateWithoutChatbotMessagesInput = {
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredLanguage?: Prisma.EnumLanguageOptionFieldUpdateOperationsInput | $Enums.LanguageOption
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cultivations?: Prisma.CultivationUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutChatbotMessagesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phoneNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  preferredLanguage?: Prisma.EnumLanguageOptionFieldUpdateOperationsInput | $Enums.LanguageOption
+  role?: Prisma.EnumRoleFieldUpdateOperationsInput | $Enums.Role
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  cultivations?: Prisma.CultivationUncheckedUpdateManyWithoutUserNestedInput
+  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
+  diseaseDetectionResults?: Prisma.DiseaseDetectionResultUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -652,11 +858,15 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
 export type UserCountOutputType = {
   cultivations: number
   notifications: number
+  diseaseDetectionResults: number
+  chatbotMessages: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cultivations?: boolean | UserCountOutputTypeCountCultivationsArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+  diseaseDetectionResults?: boolean | UserCountOutputTypeCountDiseaseDetectionResultsArgs
+  chatbotMessages?: boolean | UserCountOutputTypeCountChatbotMessagesArgs
 }
 
 /**
@@ -683,6 +893,20 @@ export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends runtime.Ty
   where?: Prisma.NotificationWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountDiseaseDetectionResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DiseaseDetectionResultWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountChatbotMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ChatbotMessageWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -696,6 +920,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   updatedAt?: boolean
   cultivations?: boolean | Prisma.User$cultivationsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  diseaseDetectionResults?: boolean | Prisma.User$diseaseDetectionResultsArgs<ExtArgs>
+  chatbotMessages?: boolean | Prisma.User$chatbotMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -717,6 +943,8 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   cultivations?: boolean | Prisma.User$cultivationsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
+  diseaseDetectionResults?: boolean | Prisma.User$diseaseDetectionResultsArgs<ExtArgs>
+  chatbotMessages?: boolean | Prisma.User$chatbotMessagesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -725,6 +953,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     cultivations: Prisma.$CultivationPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
+    diseaseDetectionResults: Prisma.$DiseaseDetectionResultPayload<ExtArgs>[]
+    chatbotMessages: Prisma.$ChatbotMessagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1078,6 +1308,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   cultivations<T extends Prisma.User$cultivationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$cultivationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CultivationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  diseaseDetectionResults<T extends Prisma.User$diseaseDetectionResultsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$diseaseDetectionResultsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DiseaseDetectionResultPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  chatbotMessages<T extends Prisma.User$chatbotMessagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$chatbotMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ChatbotMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1509,6 +1741,54 @@ export type User$notificationsArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.NotificationScalarFieldEnum | Prisma.NotificationScalarFieldEnum[]
+}
+
+/**
+ * User.diseaseDetectionResults
+ */
+export type User$diseaseDetectionResultsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the DiseaseDetectionResult
+   */
+  select?: Prisma.DiseaseDetectionResultSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the DiseaseDetectionResult
+   */
+  omit?: Prisma.DiseaseDetectionResultOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DiseaseDetectionResultInclude<ExtArgs> | null
+  where?: Prisma.DiseaseDetectionResultWhereInput
+  orderBy?: Prisma.DiseaseDetectionResultOrderByWithRelationInput | Prisma.DiseaseDetectionResultOrderByWithRelationInput[]
+  cursor?: Prisma.DiseaseDetectionResultWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DiseaseDetectionResultScalarFieldEnum | Prisma.DiseaseDetectionResultScalarFieldEnum[]
+}
+
+/**
+ * User.chatbotMessages
+ */
+export type User$chatbotMessagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ChatbotMessage
+   */
+  select?: Prisma.ChatbotMessageSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the ChatbotMessage
+   */
+  omit?: Prisma.ChatbotMessageOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ChatbotMessageInclude<ExtArgs> | null
+  where?: Prisma.ChatbotMessageWhereInput
+  orderBy?: Prisma.ChatbotMessageOrderByWithRelationInput | Prisma.ChatbotMessageOrderByWithRelationInput[]
+  cursor?: Prisma.ChatbotMessageWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ChatbotMessageScalarFieldEnum | Prisma.ChatbotMessageScalarFieldEnum[]
 }
 
 /**

@@ -7,5 +7,6 @@ import { CultivationsModule } from 'src/cultivations/cultivations.module';
   providers: [RecommendationsService],
   controllers: [RecommendationsController],
   imports: [CultivationsModule],
+  exports: [RecommendationsService],
 })
 export class RecommendationsModule { }

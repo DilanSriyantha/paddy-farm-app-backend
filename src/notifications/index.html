@@ -4,40 +4,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SSE Test</title>
+    <title>Notification Manager</title>
 </head>
 
 <body>
-    <h3>Incoming Notifications: </h3>
-    <input id="txtUserId" placeholder="Enter a user id" type="number" />
-    <button id="btn">Subscribe to notifications</button>
-    <ul id="list"></ul>
+    <h3>Notification Manager</h3>
+    <form id="form">
+        <div>
+            <label for="user-select">Select a user</label>
+            <select id="user-select">
+                <option value="">--Select a user--</option>
+            </select>
+        </div>
 
-    <script type="text/javascript">
-        let eventSource;
+        <div>
+            <label for="notification-title">Title</label>
+            <input type="text" id="notification-title" />
+        </div>
 
-        document.getElementById("btn").addEventListener("click", (e) => {
-            const userId = document.getElementById("txtUserId").value;
-            if (userId.length < 1) {
-                console.error("user id field is empty!");
+        <div>
+            <label for="notification-body">Message</label>
+            <input type="text" id="notification-body" />
+        </div>
+
+        <button type="submit">Send Notification</button>
+    </form>
+
+    <div id="output-container">
+
+    </div>
+</body>
+<script>
+    let outputContainer;
+
+    window.addEventListener("load", async (e) => {
+        outputContainer = document.getElementById("output-container");
+
+        const dropdown = document.getElementById("user-select");
+
+        const users = await fetchUsers();
+        users.forEach(user => {
+            const option = document.createElement("option");
+            option.value = user.id;
+            option.innerText = user.email;
+
+            dropdown.appendChild(option);
+        });
+    });
+
+    async function fetchUsers() {
+        try {
+            const res = await fetch("/api/v1/users/findAll", {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+            });
+            if (!res.ok) {
+                throw new Error("Failed to get response");
+                return [];
+            }
+
+            const data = await res.json();
+            return data;
+        } catch (err) {
+            outputContainer.innerHTML = JSON.stringify(err, null, "\t");
+            return [];
+        }
+    }
+
+    document.getElementById("form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const title = document.getElementById("notification-title").value;
+        const content = document.getElementById("notification-body").value;
+        const userId = Number(document.getElementById("user-select").value);
+
+        await sendNotification({ title, content, userId });
+    });
+
+    async function sendNotification(data) {
+        try {
+            const res = await fetch("/api/v1/notifications/create", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+
+            if (!res.ok) {
+                throw new Error("Failed to create notification");
                 return;
             }
 
-            if (eventSource) eventSource.close();
-
-            eventSource = new EventSource(`stream/${userId}`);
-
-            eventSource.onmessage = ({ data }) => {
-                const message = document.createElement("li");
-                message.innerText = "New message: " + data;
-                document.getElementById("list").appendChild(message);
-            }
-
-            eventSource.onerror = (error) => {
-                console.error("SSE Error: ", error);
-            }
-        });
-    </script>
-</body>
+            const body = await res.json();
+            outputContainer.innerHTML = JSON.stringify(body, null, "\t");
+        } catch (err) {
+            console.log(err);
+            outputContainer.innerHTML = JSON.stringify(err, null, "\t");
+        }
+    }
+</script>
 
 </html>

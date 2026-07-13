@@ -20,7 +20,11 @@ export class NotificationsService {
         this.emitter.setMaxListeners(100);
     }
 
-    async findAll(email: string): Promise<NotificationModel[]> {
+    async findAll(): Promise<NotificationModel[]> {
+        return this.prisma.notification.findMany();
+    }
+
+    async findAllByEmail(email: string): Promise<NotificationModel[]> {
         const user = await this.usersService.findOneByEmail(email);
         if (!user) throw new InternalServerErrorException("Failed to filter notifications by user.");
 

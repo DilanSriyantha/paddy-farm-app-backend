@@ -30,7 +30,10 @@ export class NotificationsController {
         @Req() req: Request
     ): Promise<NotificationModel[]> {
         const user = req["user"];
-        return this.notificationService.findAll(user["email"]);
+
+        if (user)
+            return this.notificationService.findAllByEmail(user["email"]);
+        return this.notificationService.findAll();
     }
 
     @Get("/findAllByUser")
@@ -47,6 +50,7 @@ export class NotificationsController {
         return this.notificationService.findOneById(id);
     }
 
+    @Public()
     @Post("/create")
     async createOne(
         @Body() body: NotificationCreateDto

@@ -12,6 +12,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { DiseasePredictionModule } from './disease-prediction/disease-prediction.module';
 import { HttpModule } from '@nestjs/axios';
+import { ChatbotModule } from './chatbot/chatbot.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { HttpModule } from '@nestjs/axios';
     FertilizersModule,
     NotificationsModule,
     DiseasePredictionModule,
+    ChatbotModule,
   ],
   controllers: [AppController],
   providers: [AppService],

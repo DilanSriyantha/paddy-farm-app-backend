@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Test</title>
+</head>
+
+<body>
+    <h3>Incoming Notifications: </h3>
+    <input id="txtUserId" placeholder="Enter a user id" type="number" />
+    <button id="btn">Subscribe to notifications</button>
+    <ul id="list"></ul>
+
+    <script type="text/javascript">
+        let eventSource;
+
+        document.getElementById("btn").addEventListener("click", (e) => {
+            const userId = document.getElementById("txtUserId").value;
+            if (userId.length < 1) {
+                console.error("user id field is empty!");
+                return;
+            }
+
+            if (eventSource) eventSource.close();
+
+            eventSource = new EventSource(`stream/${userId}`);
+
+            eventSource.onmessage = ({ data }) => {
+                const message = document.createElement("li");
+                message.innerText = "New message: " + data;
+                document.getElementById("list").appendChild(message);
+            }
+
+            eventSource.onerror = (error) => {
+                console.error("SSE Error: ", error);
+            }
+        });
+    </script>
+</body>
+
+</html>

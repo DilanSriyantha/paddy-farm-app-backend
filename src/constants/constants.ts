@@ -32,7 +32,8 @@ type CropStage =
     | 'booting_heading'
     | 'flowering'
     | 'grain_filling_ripening'
-    | 'harvest';
+    | 'harvest'
+    | 'completed';
 
 interface Recommendations {
     stages: Record<CropStage, Recommendation>;
@@ -99,6 +100,11 @@ export const TextContents: TextContents = {
                 title: "Harvest",
                 description: "Crop is ready for harvesting",
             },
+            completed: {
+                id: "stg-09",
+                title: "Completed",
+                description: "The season is completed, harvest your crops if they have not yet been harvested."
+            }
         },
         notifications: {
             stages: {
@@ -141,6 +147,11 @@ export const TextContents: TextContents = {
                     id: "ntf-08",
                     title: "Harvest Time",
                     message: "Your crop is ready for harvest. Check grain maturity, drain excess water if necessary, and being harvesting at the appropriate time."
+                },
+                completed: {
+                    id: "ntf-09",
+                    title: "Season Completed",
+                    message: ""
                 }
             }
         },
@@ -202,6 +213,13 @@ export const TextContents: TextContents = {
                     maintenance_tips: "Harvest mature grains and begin post-harvest processing and storage.",
                     next_stage_prediction: "Cultivation cycle completed. you can start a new cultivation session.",
                 },
+                completed: {
+                    watering_recommendation: "-",
+                    fertilizer_recommendation: "-",
+                    disease_and_pest_check: "-",
+                    maintenance_tips: "-",
+                    next_stage_prediction: "-"
+                },
             }
         }
     },
@@ -247,6 +265,11 @@ export const TextContents: TextContents = {
                 title: "අස්වනු නෙලීම",
                 description: "බෝගය අස්වනු නෙලීමට සූදානම්",
             },
+            completed: {
+                id: "stg-09",
+                title: "කන්නය අවසන්",
+                description: "කන්නය අවසන් වී ඇත; අස්වැන්න තවමත් නෙළා නොමැති නම්, එය නෙළා ගන්න."
+            }
         },
         notifications: {
             stages: {
@@ -289,6 +312,11 @@ export const TextContents: TextContents = {
                     id: "ntf-08",
                     title: "අස්වනු නෙලීමේ කාලය",
                     message: "ඔබේ බෝගය අස්වනු නෙලීමට සූදානම්ය. කරල් මේරීම පරීක්ෂා කරන්න, අවශ්‍ය නම් අතිරික්ත ජලය බැස යන්න, සහ සුදුසු වේලාවට අස්වනු නෙලීම ආරම්භ කරන්න.",
+                },
+                completed: {
+                    id: "ntf-09",
+                    title: "කන්නය අවසන් වී ඇත",
+                    message: "කන්නය අවසන් වී ඇත; අස්වැන්න තවමත් නෙළා නොමැති නම්, එය නෙළා ගන්න.",
                 }
             }
         },
@@ -350,6 +378,13 @@ export const TextContents: TextContents = {
                     maintenance_tips: "මෝරන ලද කරල් නෙලාගෙන, අස්වනු නෙලීමෙන් පසු සැකසීම සහ ගබඩා කිරීමේ කටයුතු ආරම්භ කරන්න.",
                     next_stage_prediction: "වගා චක්‍රය සම්පූර්ණයි. ඔබට නව වගා වාරයක් ආරම්භ කළ හැක.",
                 },
+                completed: {
+                    watering_recommendation: "-",
+                    fertilizer_recommendation: "-",
+                    disease_and_pest_check: "-",
+                    maintenance_tips: "-",
+                    next_stage_prediction: "-",
+                }
             }
         }
     }

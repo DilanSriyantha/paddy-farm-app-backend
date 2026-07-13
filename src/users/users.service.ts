@@ -1,7 +1,8 @@
-import { ConflictException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
 import { UserCreateInput, UserModel, UserUpdateInput } from 'src/generated/prisma/models';
+import { Public } from 'src/auth/decorators/public.decorator';
 
 @Injectable()
 export class UsersService {
@@ -9,26 +10,23 @@ export class UsersService {
         private prisma: PrismaService
     ) { }
 
+    @Public()
     async findAll(): Promise<UserModel[]> {
         return this.prisma.user.findMany();
     }
 
-    async findOneById(id: number): Promise<UserModel | null> {
-        const user = this.prisma.user.findUnique({
+    async findOneById(id: number): Promise<UserModel> {
+        const user = this.prisma.user.findUniqueOrThrow({
             where: { id }
         });
-
-        if (!user) throw new NotFoundException(`User with ID ${id} not found`);
 
         return user;
     }
 
-    async findOneByEmail(email: string): Promise<UserModel | null> {
-        const user = this.prisma.user.findUnique({
+    async findOneByEmail(email: string): Promise<UserModel> {
+        const user = this.prisma.user.findUniqueOrThrow({
             where: { email }
         });
-
-        if (!user) throw new NotFoundException(`User with Email ${email} not found`);
 
         return user;
     }
@@ -48,12 +46,12 @@ export class UsersService {
         });
     }
 
-    async updateOne(id: number, data: UserUpdateInput): Promise<UserModel> {
-        await this.findOneById(id);
+    async updateOne(email: string, data: UserUpdateInput): Promise<UserModel> {
+        const user = await this.findOneByEmail(email);
 
         return this.prisma.user.update({
-            where: { id },
-            data
+            where: { id: user.id },
+            data,
         });
     }
 

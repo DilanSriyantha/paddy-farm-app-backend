@@ -9,8 +9,11 @@ export class CultivationsController {
     ) { }
 
     @Get("/findAll")
-    findAll(): Promise<CultivationModel[]> {
-        return this.cultivationService.findAll();
+    findAll(
+        @Req() req: Request
+    ): Promise<CultivationModel[]> {
+        const user = req["user"];
+        return this.cultivationService.findAll(user["email"]);
     }
 
     @Get("/findOneById")

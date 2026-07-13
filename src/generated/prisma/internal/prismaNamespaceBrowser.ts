@@ -54,7 +54,9 @@ export const ModelName = {
   User: 'User',
   Cultivation: 'Cultivation',
   Fertilizer: 'Fertilizer',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  DiseaseDetectionResult: 'DiseaseDetectionResult',
+  ChatbotMessage: 'ChatbotMessage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -129,6 +131,33 @@ export const NotificationScalarFieldEnum = {
 export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
+export const DiseaseDetectionResultScalarFieldEnum = {
+  id: 'id',
+  imagePath: 'imagePath',
+  disease: 'disease',
+  diseaseScientificName: 'diseaseScientificName',
+  riskLevel: 'riskLevel',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type DiseaseDetectionResultScalarFieldEnum = (typeof DiseaseDetectionResultScalarFieldEnum)[keyof typeof DiseaseDetectionResultScalarFieldEnum]
+
+
+export const ChatbotMessageScalarFieldEnum = {
+  id: 'id',
+  content: 'content',
+  deliveredTime: 'deliveredTime',
+  sender: 'sender',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  userId: 'userId'
+} as const
+
+export type ChatbotMessageScalarFieldEnum = (typeof ChatbotMessageScalarFieldEnum)[keyof typeof ChatbotMessageScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -177,4 +206,21 @@ export const NotificationOrderByRelevanceFieldEnum = {
 } as const
 
 export type NotificationOrderByRelevanceFieldEnum = (typeof NotificationOrderByRelevanceFieldEnum)[keyof typeof NotificationOrderByRelevanceFieldEnum]
+
+
+export const DiseaseDetectionResultOrderByRelevanceFieldEnum = {
+  id: 'id',
+  imagePath: 'imagePath',
+  disease: 'disease',
+  diseaseScientificName: 'diseaseScientificName'
+} as const
+
+export type DiseaseDetectionResultOrderByRelevanceFieldEnum = (typeof DiseaseDetectionResultOrderByRelevanceFieldEnum)[keyof typeof DiseaseDetectionResultOrderByRelevanceFieldEnum]
+
+
+export const ChatbotMessageOrderByRelevanceFieldEnum = {
+  content: 'content'
+} as const
+
+export type ChatbotMessageOrderByRelevanceFieldEnum = (typeof ChatbotMessageOrderByRelevanceFieldEnum)[keyof typeof ChatbotMessageOrderByRelevanceFieldEnum]
 

@@ -47,7 +47,7 @@ export class RecommendationsService {
         };
     }
 
-    private getDaysGone(cultivation: CultivationModel) {
+    getDaysGone(cultivation: CultivationModel) {
         const startDate = new Date(cultivation.startDate);
         const currentDate = new Date(Date.now());
 
@@ -60,7 +60,7 @@ export class RecommendationsService {
         return Math.floor(diffInDays);
     }
 
-    private getStage(cultivation: CultivationModel, language: "en" | "si"): Stage | null {
+    getStage(cultivation: CultivationModel, language: "en" | "si"): Stage {
         const diffInDays = this.getDaysGone(cultivation);
 
         if (diffInDays >= 0 && diffInDays < 15) {
@@ -80,11 +80,11 @@ export class RecommendationsService {
         } else if (diffInDays >= 111 && diffInDays < 121) {
             return TextContents[language].stages.harvest;
         } else {
-            return null;
+            return TextContents[language].stages.harvest;;
         }
     }
 
-    public getNotification(cultivation: CultivationModel, language: "en" | "si"): Notification | null {
+    getNotification(cultivation: CultivationModel, language: "en" | "si"): Notification | null {
         const stage = this.getStage(cultivation, language);
         if (!stage) return null;
 
@@ -105,7 +105,7 @@ export class RecommendationsService {
         } else if (stage.id === "stg-08") {
             return TextContents[language].notifications.stages.harvest;
         } else {
-            return null;
+            return TextContents[language].notifications.stages.harvest;
         }
     }
 }

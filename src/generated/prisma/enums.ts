@@ -47,3 +47,20 @@ export const NotificationStatus = {
 } as const
 
 export type NotificationStatus = (typeof NotificationStatus)[keyof typeof NotificationStatus]
+
+
+export const DiseaseRiskLevel = {
+  LOW: 'LOW',
+  MEDIUM: 'MEDIUM',
+  HIGH: 'HIGH'
+} as const
+
+export type DiseaseRiskLevel = (typeof DiseaseRiskLevel)[keyof typeof DiseaseRiskLevel]
+
+
+export const Sender = {
+  USER: 'USER',
+  CHATBOT: 'CHATBOT'
+} as const
+
+export type Sender = (typeof Sender)[keyof typeof Sender]

@@ -1,8 +1,8 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put, Query, Req, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Delete, Get, ParseIntPipe, Post, Put, Query, Req, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { Public } from 'src/auth/decorators/public.decorator';
-import { Prisma } from 'src/generated/prisma/client';
 import type { Request } from 'express';
+import type { UserCreateInput, UserModel, UserUpdateInput } from 'src/generated/prisma/models';
 
 @Controller('api/v1/users')
 export class UsersController {
@@ -16,6 +16,7 @@ export class UsersController {
         return this.usersService.findOneByEmail(req["user"].email);
     }
 
+    @Public()
     @Get('/findAll')
     findAll() {
         return this.usersService.findAll();
@@ -23,29 +24,36 @@ export class UsersController {
 
     @Public()
     @Get('/findOneById')
-    findOneById(@Query('id', ParseIntPipe) id: number) {
+    findOneById(
+        @Query('id', ParseIntPipe) id: number
+    ) {
         return this.usersService.findOneById(id);
     }
 
     @Get('/findOneByEmail')
-    findOneByEmail(@Query('email') email: string) {
+    findOneByEmail(
+        @Query('email') email: string
+    ) {
         return this.usersService.findOneByEmail(email);
     }
 
-    @Post('/createOne')
-    createOne(@Body() createUserDto: Prisma.UserCreateInput) {
+    @Post('/create')
+    createOne(
+        @Body() createUserDto: UserCreateInput
+    ) {
         return this.usersService.createOne(createUserDto);
     }
 
-    @Put('/updateOne')
+    @Put('/update')
     updateOne(
-        @Query('id', ParseIntPipe) id: number,
-        @Body() updateUserDto: Prisma.UserUpdateInput
-    ) {
-        return this.usersService.updateOne(id, updateUserDto);
+        @Req() req: Request,
+        @Body() updateUserDto: UserUpdateInput
+    ): Promise<UserModel> {
+        const user = req["user"];
+        return this.usersService.updateOne(user["email"], updateUserDto);
     }
 
-    @Delete('/deleteOne')
+    @Delete('/delete')
     deleteOne(@Query('id', ParseIntPipe) id: number) {
         return this.usersService.deleteOne(id);
     }

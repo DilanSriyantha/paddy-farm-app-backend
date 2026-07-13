@@ -16,8 +16,12 @@ export class CultivationsService {
         private readonly notificationsService: NotificationsService,
     ) { }
 
-    async findAll(): Promise<CultivationModel[]> {
-        return this.prisma.cultivation.findMany();
+    async findAll(email: string): Promise<CultivationModel[]> {
+        const user = await this.usersService.findOneByEmail(email);
+
+        return this.prisma.cultivation.findMany({
+            where: { userId: user.id }
+        });
     }
 
     async findOneById(id: number): Promise<CultivationModel | null> {

@@ -59,3 +59,13 @@ export type Fertilizer = Prisma.FertilizerModel
  * 
  */
 export type Notification = Prisma.NotificationModel
+/**
+ * Model DiseaseDetectionResult
+ * 
+ */
+export type DiseaseDetectionResult = Prisma.DiseaseDetectionResultModel
+/**
+ * Model ChatbotMessage
+ * 
+ */
+export type ChatbotMessage = Prisma.ChatbotMessageModel

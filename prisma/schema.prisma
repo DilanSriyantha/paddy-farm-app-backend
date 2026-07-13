@@ -24,8 +24,10 @@ model User {
   createdAt         DateTime       @default(now()) @map("created_at")
   updatedAt         DateTime       @updatedAt @map("updated_at")
 
-  cultivations  Cultivation[]
-  notifications Notification[]
+  cultivations            Cultivation[]
+  notifications           Notification[]
+  diseaseDetectionResults DiseaseDetectionResult[]
+  chatbotMessages         ChatbotMessage[]
 
   @@map("users")
 }
@@ -97,4 +99,46 @@ model Notification {
 enum NotificationStatus {
   READ
   NOT_READ
+}
+
+model DiseaseDetectionResult {
+  id                    String           @id @default(uuid())
+  imagePath             String?
+  disease               String
+  diseaseScientificName String?
+  riskLevel             DiseaseRiskLevel
+  createdAt             DateTime         @default(now()) @map("created_at")
+  updatedAt             DateTime         @updatedAt @map("updated_at")
+
+  userId Int @map("user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("disease_detection_results")
+}
+
+enum DiseaseRiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+model ChatbotMessage {
+  id            Int       @id @default(autoincrement())
+  content       String    @db.Text
+  deliveredTime DateTime? @default(now())
+  sender        Sender    @default(USER)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+
+  userId Int @map("user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("chatbot_messages")
+}
+
+enum Sender {
+  USER
+  CHATBOT
 }
