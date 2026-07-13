@@ -1,13 +1,27 @@
-import { Body, Controller, Delete, Get, ParseIntPipe, Post, Put, Query, UploadedFile } from '@nestjs/common';
+import { Body, Controller, Delete, Get, ParseIntPipe, Post, Put, Query, Res, UploadedFile } from '@nestjs/common';
 import { UseLocalImageUpload } from 'src/common/interceptors/local-image-upload.interceptor';
 import { FertilizersService } from './fertilizers.service';
 import { FertilizerModel } from 'src/generated/prisma/models';
+import { Public } from 'src/auth/decorators/public.decorator';
+import type { Response } from 'express';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 @Controller('api/v1/fertilizers')
 export class FertilizersController {
     constructor(
         private readonly fertilizersService: FertilizersService
     ) { }
+
+    @Public()
+    @Get("/")
+    async index(
+        @Res() response: Response
+    ) {
+        response
+            .type("text/html")
+            .send(readFileSync(join(`${process.cwd()}/src/fertilizers/index.html`)).toString());
+    }
 
     @Get("/findAll")
     async findAll(): Promise<FertilizerModel[]> {
@@ -21,6 +35,7 @@ export class FertilizersController {
         return this.fertilizersService.findOneById(id);
     }
 
+    @Public()
     @Post("/create")
     @UseLocalImageUpload("image", "fertilizers")
     async create(

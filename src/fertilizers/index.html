@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fertilizer Prices</title>
+</head>
+
+<body>
+    <h3>Fertilizer Prices Manager</h3>
+    <form id="form">
+        <div>
+            <label for="img-input">Image</label>
+            <input id="img-input" type="file" accept="image/*" />
+        </div>
+
+        <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" />
+        </div>
+
+        <div>
+            <label for="price-per-kg">Price per kg</label>
+            <input id="price-per-kg" type="number" />
+        </div>
+
+        <button type="submit">Create Fertilizers</button>
+    </form>
+    <div id="output-container"></div>
+</body>
+<script>
+    let outputContainer;
+
+    window.addEventListener("load", async (e) => {
+        outputContainer = document.getElementById("output-container");
+    });
+
+    document.getElementById("form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        await createFertilizer();
+    });
+
+    async function createFertilizer() {
+        const imageInput = document.getElementById("img-input");
+        const nameInput = document.getElementById("name");
+        const pricePerKgInput = document.getElementById("price-per-kg");
+
+        const formData = new FormData();
+
+        if (imageInput.files.length > 0) {
+            formData.append("image", imageInput.files[0]);
+        } else {
+            alert("Please select an image first.");
+            return;
+        }
+
+        formData.append("name", nameInput.value);
+        formData.append("pricePerKg", pricePerKgInput.value);
+
+        try {
+            const res = await fetch("create", {
+                method: "POST",
+                body: formData,
+            });
+
+            if (!res.ok) {
+                throw new Error(`Server error: ${res.status}`);
+            }
+
+            const result = await res.json();
+            console.log("Upload successful: ", result);
+
+            outputContainer = document.getElementById("output-container");
+            outputContainer.innerHTML = JSON.stringify(result, null, "\t");
+
+            document.getElementById("form").reset();
+        } catch (err) {
+            alert(err.message);
+        }
+    }
+</script>
+
+</html>
