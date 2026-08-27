@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, Req } from '@nestjs/common';
 import { RecommendationsService } from './recommendations.service';
 import { RecommendationSummary } from 'src/constants/constants';
 
@@ -10,8 +10,11 @@ export class RecommendationsController {
 
     @Get("/getRecommendationsForCurrentSession")
     async getRecommendationsForCurrentSession(
+@Req req: Request,
         @Query("language") language: "en" | "si"
     ): Promise<RecommendationSummary | null> {
-        return this.recommendationsService.getRecommendations(language);
+const user = req["user"];
+
+        return this.recommendationsService.getRecommendations(language, user["email"]);
     }
 }
