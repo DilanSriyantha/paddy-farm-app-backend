@@ -20,8 +20,7 @@ export class CultivationsController {
     findOneById(
         @Query("id", ParseIntPipe) id: number
     ): Promise<CultivationModel | null> {
-const user = req["user"];
-        return this.cultivationService.findOneById(id, user["email"]);
+        return this.cultivationService.findOneById(id);
     }
 
     @Post("/create")
