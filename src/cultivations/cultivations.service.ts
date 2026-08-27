@@ -25,13 +25,11 @@ export class CultivationsService {
         });
     }
 
-    async findOneById(id: number, email: string): Promise<CultivationModel | null> {
+    async findOneById(id: number): Promise<CultivationModel | null> {
 const user = await this.usersService.findOneByEmail(email);
 
         const cultivation = await this.prisma.cultivation.findFirst({
-            where: { id,
-userId: user.id
- }
+            where: { id }
         });
 
         if (!cultivation) throw new NotFoundException(`Cultivation with ID ${id} not found`);
@@ -39,13 +37,17 @@ userId: user.id
         return cultivation;
     }
 
-    async findActiveSessions(user: UserModel): Promise<CultivationModel[]> {
+    async findActiveSessions(email: string): Promise<CultivationModel[]> {
+const user = await this.usersService.findOneByEmail(email);
+
         return this.prisma.cultivation.findMany({
             where: { status: "ACTIVE", userId: user.id }
         });
     }
 
-    async findLatestActiveSession(user: UserModel): Promise<CultivationModel | null> {
+    async findLatestActiveSession(email: string): Promise<CultivationModel | null> {
+const user = await this.usersService.findOneByEmail(email);
+
         return this.prisma.cultivation.findFirst({
             where: { status: "ACTIVE", userId: user.id }
         });
@@ -55,7 +57,7 @@ userId: user.id
         const user = await this.usersService.findOneByEmail(email);
         if (!user) throw new NotFoundException("User not found");
 
-        const activeSessions = await this.findActiveSessions();
+        const activeSessions = await this.findActiveSessions(email);
         if (activeSessions.length > 0) throw new NotAcceptableException("An active cultivation session is detected. You cannot create another cultivation session until the current session is completed.");
 
         const parsedDate = new Date(body.startDate);
