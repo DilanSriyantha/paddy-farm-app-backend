@@ -2,7 +2,7 @@ import { Injectable, Logger, NotAcceptableException, NotFoundException } from '@
 import { Cron, CronExpression } from '@nestjs/schedule';
 import { Notification, TextContents } from 'src/constants/constants';
 import { PrismaPromise } from 'src/generated/prisma/internal/prismaNamespace';
-import { CultivationCreateInput, CultivationModel, CultivationUpdateInput } from 'src/generated/prisma/models';
+import { CultivationCreateInput, CultivationModel, CultivationUpdateInput, UserModel } from 'src/generated/prisma/models';
 import { NotificationsService } from 'src/notifications/notifications.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { UsersService } from 'src/users/users.service';
@@ -39,15 +39,15 @@ userId: user.id
         return cultivation;
     }
 
-    async findActiveSessions(): Promise<CultivationModel[]> {
+    async findActiveSessions(user: UserModel): Promise<CultivationModel[]> {
         return this.prisma.cultivation.findMany({
-            where: { status: "ACTIVE" }
+            where: { status: "ACTIVE", userId: user.id }
         });
     }
 
-    async findLatestActiveSession(): Promise<CultivationModel | null> {
+    async findLatestActiveSession(user: UserModel): Promise<CultivationModel | null> {
         return this.prisma.cultivation.findFirst({
-            where: { status: "ACTIVE" }
+            where: { status: "ACTIVE", userId: user.id }
         });
     }
 
