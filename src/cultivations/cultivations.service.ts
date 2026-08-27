@@ -25,9 +25,13 @@ export class CultivationsService {
         });
     }
 
-    async findOneById(id: number): Promise<CultivationModel | null> {
+    async findOneById(id: number, email: string): Promise<CultivationModel | null> {
+const user = await this.usersService.findOneByEmail(email);
+
         const cultivation = await this.prisma.cultivation.findFirst({
-            where: { id }
+            where: { id,
+userId: user.id
+ }
         });
 
         if (!cultivation) throw new NotFoundException(`Cultivation with ID ${id} not found`);
