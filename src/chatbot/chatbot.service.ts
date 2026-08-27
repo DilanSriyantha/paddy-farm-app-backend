@@ -60,7 +60,7 @@ export class ChatbotService {
 
     private async buildContextInstruction(user: UserModel, language: "en" | "si"): Promise<string> {
         const cultivation = await this.prisma.cultivation.findFirstOrThrow({
-            where: { status: "ACTIVE" }
+            where: { status: "ACTIVE", userId: user.id }
         });
         const elapsedDays = this.recommendationsService.getDaysGone(cultivation);
         const chatHistory = await this.getHistory(user.email);
