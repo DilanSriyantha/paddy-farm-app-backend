@@ -9,8 +9,8 @@ export class RecommendationsService {
         private readonly cultivationsService: CultivationsService
     ) { }
 
-    async getRecommendations(language: "en" | "si"): Promise<RecommendationSummary | null> {
-        const cultivation = await this.cultivationsService.findLatestActiveSession();
+    async getRecommendations(language: "en" | "si", email: string): Promise<RecommendationSummary | null> {
+        const cultivation = await this.cultivationsService.findLatestActiveSession(email);
         if (!cultivation) return null;
 
         const daysGone = this.getDaysGone(cultivation);
